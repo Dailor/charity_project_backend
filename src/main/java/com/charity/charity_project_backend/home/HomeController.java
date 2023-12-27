@@ -1,5 +1,6 @@
 package com.charity.charity_project_backend.home;
 
+import com.charity.charity_project_backend.adopt.repositories.AdoptAnimalRepository;
 import com.charity.charity_project_backend.auth.models.Role;
 import com.charity.charity_project_backend.auth.repositories.UserRepository;
 import com.charity.charity_project_backend.auth.services.AuthService;
@@ -14,14 +15,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class HomeController {
     private final UserRepository userRepository;
+    private final AdoptAnimalRepository adoptAnimalRepository;
 
     @GetMapping
     public ResponseEntity<HomeResponse> handler() {
         return ResponseEntity.ok(HomeResponse
                 .builder()
-                        .petsFoundHomeCount(27)
-                        .partnersCount(userRepository.countUserByRole(Role.SPONSOR))
-                        .dollarsCollected(57000)
+                .petsFoundHomeCount(adoptAnimalRepository.countAdoptAnimalByOwnerIsNotNull())
+                .partnersCount(userRepository.countUserByRole(Role.SPONSOR))
+                .dollarsCollected(57000)
                 .build());
     }
 }

@@ -8,4 +8,10 @@ import java.util.List;
 
 public interface AdoptAnimalRepository extends JpaRepository<AdoptAnimal, Integer> {
     List<AdoptAnimal> findAllBySponsorAndOwnerIsNull(User sponsor);
+    List<AdoptAnimal> findAllBySponsorAndOwnerIsNotNull(User sponsor);
+    List<AdoptAnimal> findAllByOwner(User owner);
+
+    List<AdoptAnimal> findAllByOwnerIsNull();
+
+    Integer countAdoptAnimalByOwnerIsNotNull();
 }

@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class AdoptAnimalCreateRequest {
+public class AdoptAnimalRequest {
     @NotNull
     private String name;
     private String breed;
